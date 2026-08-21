@@ -27,8 +27,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # Ouvre (ou met à jour) la PR « Version Packages ».
-      # Quand cette PR est fusionnée, la même étape publie sur npm.
+      # Opens (or updates) the "Version Packages" pull request. Merging that
+      # PR makes this same step publish the new version to npm.
       - uses: changesets/action@v1
         with:
           version: pnpm changeset version
