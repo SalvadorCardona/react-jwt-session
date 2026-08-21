@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: react-jwt-session
+
+      # Until universal-web-storage is published to npm it is resolved through a link to
+      # the sibling repository (see the pnpm.overrides entry in package.json).
+      # Once published, drop this step and the override.
+      # While that repository is private, `token` must carry a PAT with read
+      # access; the secret becomes unnecessary once it is public.
+      - uses: actions/checkout@v4
+        with:
+          repository: SalvadorCardona/universal-web-storage
+          path: universal-web-storage
+          token: ${{ secrets.DEPS_TOKEN || github.token }}
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: react-jwt-session/pnpm-lock.yaml
+
+      # universal-web-storage must be built for its types to resolve
+      - run: pnpm install --frozen-lockfile
+        working-directory: universal-web-storage
+      - run: pnpm run build
+        working-directory: universal-web-storage
+
+      - run: pnpm install --frozen-lockfile
+        working-directory: react-jwt-session
+      - run: pnpm run typecheck
+        working-directory: react-jwt-session
+      - run: pnpm run lint
+        working-directory: react-jwt-session
+      - run: pnpm run test
+        working-directory: react-jwt-session
+      - run: pnpm run build
+        working-directory: react-jwt-session
+      - run: pnpm pack --pack-destination /tmp
+        working-directory: react-jwt-session
