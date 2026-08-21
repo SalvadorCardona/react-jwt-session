@@ -38,11 +38,11 @@ function Profile() {
 ## Installation
 
 ```bash
-pnpm add react-jwt-session universal-web-storage
+pnpm add react-jwt-session ssr-safe-storage
 ```
 
 `react` (18.3+ or 19) is a peer dependency;
-[`universal-web-storage`](https://github.com/SalvadorCardona/universal-web-storage)
+[`ssr-safe-storage`](https://github.com/SalvadorCardona/ssr-safe-storage)
 backs the persistence and keeps the same calls working during server-side
 rendering.
 

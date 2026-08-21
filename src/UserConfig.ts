@@ -73,8 +73,12 @@ export function getUserConfig(): UserContextInterface {
   return config
 }
 
-export function setUserConfig(newConfig: UserContextInterface) {
-  config = deepMerge(config, newConfig)
+/**
+ * Overrides part of the configuration; whatever is left out keeps its current
+ * value, since the new settings are merged into the existing ones.
+ */
+export function setUserConfig(newConfig: Partial<UserContextInterface>) {
+  config = deepMerge(config, newConfig as UserContextInterface)
 
   return config as Required<UserContextInterface>
 }

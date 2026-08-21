@@ -1,4 +1,4 @@
-import { getInStorage, setInStorage } from "universal-web-storage"
+import { getInStorage, setInStorage } from "ssr-safe-storage"
 import { isLogged } from "@/isLogged"
 import { userKey } from "@/storageKeys"
 

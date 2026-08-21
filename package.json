@@ -76,11 +76,6 @@
   },
   "packageManager": "pnpm@10.33.2",
   "dependencies": {
-    "universal-web-storage": "^0.1.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "universal-web-storage": "link:../universal-web-storage"
-    }
+    "ssr-safe-storage": "^0.1.0"
   }
 }

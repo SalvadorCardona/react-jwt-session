@@ -4,16 +4,13 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  universal-web-storage: link:../universal-web-storage
-
 importers:
 
   .:
     dependencies:
-      universal-web-storage:
-        specifier: link:../universal-web-storage
-        version: link:../universal-web-storage
+      ssr-safe-storage:
+        specifier: ^0.1.0
+        version: 0.1.0
     devDependencies:
       '@changesets/cli':
         specifier: ^2.29.8
@@ -1595,6 +1592,9 @@ packages:
 
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
+
+  ssr-safe-storage@0.1.0:
+    resolution: {integrity: sha512-idJ33vKLpu0r6MXudEXunGyGhG/PoywPTYISRSQeVA+CledS/lsDh+49tTw/C4MFy86jqLGs9Yiz7zBZa8DqVw==}
 
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
@@ -3349,6 +3349,8 @@ snapshots:
       signal-exit: 4.1.0
 
   sprintf-js@1.0.3: {}
+
+  ssr-safe-storage@0.1.0: {}
 
   stackback@0.0.2: {}
 
