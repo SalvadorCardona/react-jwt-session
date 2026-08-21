@@ -16,36 +16,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          path: react-jwt-session
-
-      # See the comment in ci.yml: link to the sibling repository until it is
-      # published to npm.
-      - uses: actions/checkout@v4
-        with:
-          repository: SalvadorCardona/universal-web-storage
-          path: universal-web-storage
-          token: ${{ secrets.DEPS_TOKEN || github.token }}
 
       - uses: pnpm/action-setup@v4
-        with:
-          package_json_file: react-jwt-session/package.json
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: react-jwt-session/pnpm-lock.yaml
           registry-url: https://registry.npmjs.org
 
       - run: pnpm install --frozen-lockfile
-        working-directory: react-jwt-session
 
-      # Opens (or updates) the "Version Packages" pull request.
-      # Once that PR is merged, this same step publishes to npm.
+      # Ouvre (ou met à jour) la PR « Version Packages ».
+      # Quand cette PR est fusionnée, la même étape publie sur npm.
       - uses: changesets/action@v1
         with:
-          cwd: react-jwt-session
           version: pnpm changeset version
           publish: pnpm run release
           commit: "chore: version packages"
