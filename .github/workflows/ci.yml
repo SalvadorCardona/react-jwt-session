@@ -25,6 +25,8 @@ jobs:
           token: ${{ secrets.DEPS_TOKEN || github.token }}
 
       - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: react-jwt-session/package.json
       - uses: actions/setup-node@v4
         with:
           node-version: 22
