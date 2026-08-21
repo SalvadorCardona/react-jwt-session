@@ -1,6 +1,6 @@
 {
   "name": "react-jwt-session",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "JWT session handling for React: decode the token, read roles, persist the signed-in user, and expose it all through a provider.",
   "keywords": [
     "react",
