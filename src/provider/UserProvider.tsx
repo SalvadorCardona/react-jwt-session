@@ -9,6 +9,7 @@ import { getUserConfig, UserContextInterface } from "@/UserConfig"
 import { LoginRequestInterface } from "@/LoginRequestInterface"
 import { isLogged } from "@/isLogged"
 import { setUserToken } from "@/UserToken"
+import { invalidateSession } from "@/loadSession"
 
 interface UserProviderProps {
   children: ReactNode
@@ -32,6 +33,7 @@ export const UserProvider = ({
       userConfig.logout()
     }
     setUserInLocalStorage(newUser as UserInterface)
+    invalidateSession()
     setUser(newUser)
   }, [])
 
